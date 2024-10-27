@@ -1,0 +1,21 @@
+team_name,engine,licensed_in,season_entered,races_entered,wins,points,poles,fastest_laps,podiums,wdc,wcc,name,surname,nationality,year_of_birth,seasons_competed_driver,races_entered_driver,driver_wins,driver_points,driver_poles,driver_fastest_laps,driver_podiums,driver_wdc
+Red Bull Racing,Honda RBPT,Austria,2005,390,120,7752,103,98,280,7,6,Max,Verstappen,Netherlands,1997,10,205,61,2940,40,32,110,3
+Red Bull Racing,Honda RBPT,Austria,2005,390,120,7752,103,98,280,7,6,Sergio,Perez,Mexico,1990,14,281,6,1636,3,12,39,0
+Ferrari,Ferrari,Italy,1950,1096,247,10168,252,262,823,15,16,Charles,Leclerc,Monaco,1997,7,145,8,1349,26,9,40,0
+Ferrari,Ferrari,Italy,1950,1096,247,10168,252,262,823,15,16,Carlos,Sainz,Spain,1994,10,205,3,1197,5,4,24,0
+Mercedes,Mercedes,Germany,2010,313,128,7566,139,109,296,9,8,Lewis,Hamilton,UK,1985,18,352,105,4816,104,67,201,7
+Mercedes,Mercedes,Germany,2010,313,128,7566,139,109,296,9,8,George,Russell,UK,1998,6,124,2,636,3,8,14,0
+McLaren,Mercedes,UK,1966,970,188,6835,162,169,521,12,8,Lando,Norris,UK,1999,6,124,3,930,7,10,24,0
+McLaren,Mercedes,UK,1966,970,188,6835,162,169,521,12,8,Oscar,Piastri,Australia,2001,2,42,2,344,0,3,9,0
+Alpine,Renault,France,2021,86,1,461,0,1,4,0,0,Esteban,Ocon,France,1996,8,153,1,427,0,1,3,0
+Alpine,Renault,France,2021,86,1,461,0,1,4,0,0,Pierre,Gasly,France,1996,8,150,1,402,0,3,4,0
+Aston Martin,Mercedes,UK,2021,92,0,498,0,3,9,0,0,Fernando,Alonso,Spain,1981,21,400,32,2329,22,26,106,2
+Aston Martin,Mercedes,UK,2021,92,0,498,0,3,9,0,0,Lance,Stroll,Canada,1998,8,165,0,292,1,0,3,0
+Haas,Ferrari,US,2016,186,0,287,1,2,0,0,0,Kevin,Magnussen,Denmark,1992,10,183,0,194,1,2,1,0
+Haas,Ferrari,US,2016,186,0,287,1,2,0,0,0,Nico,Hülkenberg,Germany,1987,13,226,0,559,1,2,0,0
+RB,Honda RBPT,Italy,2024,20,0,36,0,1,0,0,0,Yuki,Tsunoda,Japan,2000,4,86,0,83,0,1,0,0
+RB,Honda RBPT,Italy,2024,20,0,36,0,1,0,0,0,Liam,Lawson,New Zealand,2002,1,1,0,2,0,0,0,0
+Sauber,Ferrari,Switzerland,1993,485,1,865,1,5,26,0,0,Valtteri,Bottas,Finland,1989,12,243,10,1797,20,19,67,0
+Sauber,Ferrari,Switzerland,1993,485,1,865,1,5,26,0,0,Zhou,Guanyu,China,1999,3,64,0,12,0,2,0,0
+Williams,Mercedes,UK,1978,823,114,3637,128,133,313,7,9,Alexander,Albon,Thailand,1996,5,102,0,240,0,0,2,0
+Williams,Mercedes,UK,1978,823,114,3637,128,133,313,7,9,Franco,Colapinto,Argentina,2003,1,5,0,5,0,0,0,0
