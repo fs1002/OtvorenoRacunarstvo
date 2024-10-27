@@ -1,5 +1,5 @@
 # OtvorenoRacunarstvo
-Skup podataka sadrži podatke o trenutnim momčadima koje se natječu u utrkama Formule 1. 
+Skup podataka sadrži informacije o trenutnim momčadima koje se natječu u utrkama Formule 1. 
 
 ## Metapodaci
 **Naziv** : Formula 1 momčadi  
