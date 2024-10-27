@@ -3,7 +3,7 @@ Skup podataka sadrži informacije o trenutnim momčadima koje se natječu u utrk
 
 ## Metapodaci
 **Naziv** : Formula 1 momčadi  
-**Ključne riječi** : teams, drivers
+**Ključne riječi** : teams, drivers  
 **Autor** : Fran Šribar  
 **Jezik** : hrvatski, engleski  
 **Trenutna verzija** : 1.0  
