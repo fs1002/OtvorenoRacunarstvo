@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index page</title>
+    <meta name="author" content="Fran Šribar">
+    <meta name="decription" content="Skup podataka koji sadrži trenutne momčadi Formule 1">
+    <meta name="keywords" content="teams, drivers">
+    <meta name="language" content="hrvatski, engleski">
+    <meta name="licence" content="Creative Commons Zero v1.0 Universal">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+    <link rel="stylesheet" type="text/css" href="static/styles/index.css"> 
+</head>
+<body>
+   <h1> Formula 1 momčadi </h1>
+
+   <h3>Skup podataka sadrži trenutne momčadi koje se natječu u prvenstvu Formule 1.
+     Unutar skupa podataka nalaze se općenite informacije vezane uz momčadi.</h3>
+    <ul>
+        <li><a href="../static/data/F1Teams.csv" download><span class="preuzmi">CSV Format</span></a></li>
+        <li><a href="../static/data/F1Teams.json" download>JSON Format</a></li>
+    </ul>
+
+    <div class="button-container">
+        <button id="redirectToDatatable">Go to Datatable Page</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#redirectToDatatable').on('click', function() {
+                window.location.href = '/datatable';
+            });
+        });
+    </script>
+
+</body>
+</html>

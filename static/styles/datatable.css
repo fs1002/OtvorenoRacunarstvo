@@ -1,0 +1,54 @@
+#dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+ th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+ th {
+    background-color: #C41E3A;
+}
+
+#filterInput {
+    margin-bottom: 10px;
+    padding: 8px;
+}
+
+.downloadBtns{
+    /* margin-top: 50px;
+    margin-left: 500px; */
+    display: flex;
+}
+
+.downloadBtns button {
+    margin-right: 10px; 
+    padding: 10px;
+    background-color: #C41E3A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}  
+
+
+#redirectToIndex{
+     margin-left: 150px; 
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #C41E3A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+
+.allbtns{
+    margin-top: 50px;
+    margin-left: 500px;
+}

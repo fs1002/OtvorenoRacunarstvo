@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/styles/datatable.css" /> 
+    <title>Data Table</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+</head>
+<body>
+
+    <div>
+        <label for="filterInput">Polje za pretragu</label>
+        <input type="text" id="filterInput" placeholder="Unesite vrijednost">
+    </div>
+   
+    <div>
+        <label for="filterPolje">Odaberite polje za pretragu</label>
+        <select id="filterPolje">
+            <option value="wildcard">Sva polja (wildcard)</option>
+            <option value="team_name">Team name</option>
+            <option value="engine">Engine</option>
+            <option value="licensed_in">Licensed in</option>
+            <option value="season_entered">Season entered</option>
+            <option value="races_entered">Races entered (team)</option>
+            <option value="wins">Wins (team)</option>
+            <option value="points">Points (team)</option>
+            <option value="poles">Poles (team)</option>
+            <option value="fastest_laps">Fastest laps (team)</option>
+            <option value="podiums">Podiums (team)</option>
+            <option value="wdc">WDC (team)</option>
+            <option value="wcc">WCC</option>
+            <option value="name">Name</option>
+            <option value="surname">Surname</option>
+            <option value="nationality">Born in</option>
+            <option value="year_of_birth">Year of birth</option>
+            <option value="seasons_competed">Seasons completed (driver)</option>
+            <option value="driver_races_entered">Races entered (driver)</option>
+            <option value="driver_wins">Driver wins</option>
+            <option value="driver_points">Driver points</option>
+            <option value="driver_poles">Driver poles</option>
+            <option value="driver_fastest_laps">Driver fastest laps</option>
+            <option value="driver_podiums">Driver podiums</option>
+            <option value="driver_wdc">WDC (driver)</option>
+
+ 
+        </select>
+    </div>
+   
+
+    <table id="dataTable">
+        <thead>
+            <tr>
+                <th>Team name</th>
+                <th>Engine</th>
+                <th>Licensed in</th>
+                <th>Season entered</th>
+                <th>Races entered</th>
+                <th>Wins</th>
+                <th>Points</th>
+                <th>Poles</th>
+                <th>Fastest laps</th>
+                <th>Podiums</th>
+                <th>WDC</th>
+                <th>WCC</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th>Born in</th>
+                <th>Year of birth</th>
+                <th>Seasons completed</th>
+                <th>Races entered by driver</th>
+                <th>Driver wins</th>
+                <th>Driver points</th>
+                <th>Driver poles</th>
+                <th>Driver fastest laps</th>
+                <th>Driver podiums</th>
+                <th>Driver WDC</th>
+            </tr>
+        </thead>
+        <tbody id="data-container">
+       
+        </tbody>
+    </table>
+    <div class="allbtns">
+    <div class="downloadBtns">
+    <button id="downloadCsv">Download Table in CSV Format</button>
+    <button id="downloadJson">Download Table in JSON Format</button>
+    </div>
+    <button id="redirectToIndex">Go to Index Page</button>
+    </div>
+
+
+    <script>
+        $(document).ready(function() {
+            function getFilteredData(filterValue = '', filterField = 'wildcard') {
+                return $.ajax({
+                    url: '/api/F1teams',
+                    method: 'GET',
+                    data: {
+                        filter_value: filterValue,
+                        filter_field: filterField   
+                    }
+                });
+            }
+
+            function populateTable(data) {
+                $('#data-container').empty();
+
+                data.forEach(function(row) {
+                    const tableRow = `
+                        <tr>
+                            <td>${row.team_name}</td>
+                            <td>${row.engine}</td>
+                            <td>${row.licensed_in}</td>
+                            <td>${row.season_entered}</td>
+                            <td>${row.races_entered}</td>
+                            <td>${row.wins}</td>
+                            <td>${row.points}</td>
+                            <td>${row.poles}</td>
+                            <td>${row.fastest_laps}</td>
+                            <td>${row.podiums}</td>
+                            <td>${row.wdc}</td>
+                            <td>${row.wcc}</td>
+                            <td>${row.name}</td>
+                            <td>${row.surname}</td>
+                            <td>${row.nationality}</td>
+                            <td>${row.year_of_birth}</td>
+                            <td>${row.seasons_competed}</td>
+                            <td>${row.driver_races_entered}</td>
+                            <td>${row.driver_wins}</td>
+                            <td>${row.driver_points}</td>
+                            <td>${row.driver_poles}</td>
+                            <td>${row.driver_fastest_laps}</td>
+                            <td>${row.driver_podiums}</td>
+                            <td>${row.driver_wdc}</td>
+                        </tr>
+                    `;
+                    $('#data-container').append(tableRow);
+                });
+            }
+
+            getFilteredData().then(function(allData) {
+                populateTable(allData);
+            }).catch(function(error) {
+                console.error('Error fetching initial data:', error);
+            });
+
+            $('#filterInput, #filterPolje').on('input change', function() {
+                var filterValue = $('#filterInput').val(); 
+
+                var filterField = $('#filterPolje').val(); 
+
+                getFilteredData(filterValue, filterField).then(function(filteredData) {
+                    populateTable(filteredData);
+                }).catch(function(error) {
+                    console.error('Error fetching filtered data:', error);
+                });
+            });
+
+            $('#redirectToIndex').on('click', function() {
+                window.location.href = '/';
+            });
+
+    $('#downloadCsv').on('click', function() {
+        const filterValue = $('#filterInput').val();
+        const filterField = $('#filterPolje').val();
+        const url = `/api/download/csv?filter_value=${encodeURIComponent(filterValue)}&filter_field=${encodeURIComponent(filterField)}`;
+        window.location.href = url;
+    });
+
+    $('#downloadJson').on('click', function() {
+        const filterValue = $('#filterInput').val();
+        const filterField = $('#filterPolje').val();
+        const url = `/api/download/json?filter_value=${encodeURIComponent(filterValue)}&filter_field=${encodeURIComponent(filterField)}`;
+        window.location.href = url;
+    });
+        });
+    </script>
+</body>
+</html>
