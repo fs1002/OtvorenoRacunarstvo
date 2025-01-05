@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Team</title>
+  <link rel="stylesheet" href="/static/styles/addTeam.css" />
+</head>
+<body>
+  <h1>Update Team (Partial)</h1>
+  <form id="updateForm">
+    <label for="engine">Engine:</label>
+    <input type="text" id="engine" placeholder="Optional" />
+
+    <label for="races_entered">Races Entered:</label>
+    <input type="number" id="races_entered" placeholder="Optional" />
+
+    <label for="wins">Wins:</label>
+    <input type="number" id="wins" placeholder="Optional" />
+
+    <label for="points">Points:</label>
+    <input type="number" id="points" placeholder="Optional" />
+
+    <label for="poles">Poles:</label>
+    <input type="number" id="poles" placeholder="Optional" />
+
+    <label for="fastest_laps">Fastest Laps:</label>
+    <input type="number" id="fastest_laps" placeholder="Optional" />
+
+    <label for="podiums">Podiums:</label>
+    <input type="number" id="podiums" placeholder="Optional" />
+
+    <label for="wdc">WDC:</label>
+    <input type="number" id="wdc" placeholder="Optional" />
+
+    <label for="wcc">WCC:</label>
+    <input type="number" id="wcc" placeholder="Optional" />
+
+    <button type="submit">Update</button>
+  </form>
+
+  <button type="button" onclick="returnToDatatable()">Return to Datatable Page</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const updateForm = document.getElementById('updateForm');
+
+      const pathSegments = window.location.pathname.split('/');
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      const teamId = lastSegment.replace('.html', '');
+
+
+      updateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const updates = {};
+
+        const engine = document.getElementById('engine').value;
+        const races_entered = document.getElementById('races_entered').value;
+        const wins = document.getElementById('wins').value;
+        const points = document.getElementById('points').value;
+        const poles = document.getElementById('poles').value;
+        const fastest_laps = document.getElementById('fastest_laps').value;
+        const podiums = document.getElementById('podiums').value;
+        const wdc = document.getElementById('wdc').value;
+        const wcc = document.getElementById('wcc').value;
+
+
+        if (engine) updates.engine = engine;
+        if (races_entered) updates.races_entered = Number(races_entered);
+        if (wins) updates.wins = Number(wins);
+        if (points) updates.points = Number(points);
+        if (poles) updates.poles = Number(poles);
+        if (fastest_laps) updates.fastest_laps = Number(fastest_laps);
+        if (podiums) updates.podiums = Number(podiums);
+        if (wdc) updates.wdc = Number(wdc);
+        if (wcc) updates.wcc = Number(wcc);
+
+        fetch(`/api/updateTeam/${teamId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updates)
+        })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Update failed');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          alert(data.message || 'Team updated successfully!');
+        })
+        .catch((err) => {
+          console.error('Error updating team:', err);
+          alert('Error updating team');
+        });
+      });
+    });
+    function returnToDatatable() {
+            window.location.href = '/datatable';
+        }
+  </script>
+</body>
+</html>

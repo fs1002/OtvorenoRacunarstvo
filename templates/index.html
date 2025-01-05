@@ -22,6 +22,7 @@
 
     <div class="button-container">
         <button id="redirectToDatatable">Go to Datatable Page</button>
+        <button id="openApi">Get OpenAPI JSON</button>
     </div>
 
     <script>
@@ -29,7 +30,13 @@
             $('#redirectToDatatable').on('click', function() {
                 window.location.href = '/datatable';
             });
+            
+           $('#openApi').on('click', function() {
+                window.location.href = '/download/openapi';
+            });
+
         });
+
     </script>
 
 </body>

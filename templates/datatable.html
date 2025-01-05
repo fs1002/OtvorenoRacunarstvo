@@ -84,6 +84,11 @@
     <button id="downloadCsv">Download Table in CSV Format</button>
     <button id="downloadJson">Download Table in JSON Format</button>
     </div>
+    <div class="newBtns">
+        <button id="addNewTeam">Add New Team</button>
+        <button id="deleteTeam">Update or Delete Team</button>
+        <button id="drivers">List of Drivers</button>
+        </div>
     <button id="redirectToIndex">Go to Index Page</button>
     </div>
 
@@ -101,10 +106,10 @@
                 });
             }
 
-            function populateTable(data) {
+            function populateTable(rowsArray) {
                 $('#data-container').empty();
 
-                data.forEach(function(row) {
+                rowsArray.forEach(function(row) {
                     const tableRow = `
                         <tr>
                             <td>${row.team_name}</td>
@@ -138,7 +143,7 @@
             }
 
             getFilteredData().then(function(allData) {
-                populateTable(allData);
+                populateTable(allData.data);
             }).catch(function(error) {
                 console.error('Error fetching initial data:', error);
             });
@@ -149,7 +154,7 @@
                 var filterField = $('#filterPolje').val(); 
 
                 getFilteredData(filterValue, filterField).then(function(filteredData) {
-                    populateTable(filteredData);
+                    populateTable(filteredData.data);
                 }).catch(function(error) {
                     console.error('Error fetching filtered data:', error);
                 });
@@ -171,6 +176,17 @@
         const filterField = $('#filterPolje').val();
         const url = `/api/download/json?filter_value=${encodeURIComponent(filterValue)}&filter_field=${encodeURIComponent(filterField)}`;
         window.location.href = url;
+    });
+
+    $('#addNewTeam').on('click', function() {
+        window.location.href = '/add-team'; 
+    });
+
+    $('#deleteTeam').on('click', function() {
+        window.location.href = '/delete-team'; 
+    });
+    $('#drivers').on('click', function() {
+        window.location.href = '/drivers';
     });
         });
     </script>

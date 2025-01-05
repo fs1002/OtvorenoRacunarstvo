@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="static/styles/addTeam.css" />
+    <title>Add New Team</title>
+</head>
+<body>
+    <h1>Add New Team</h1>
+
+    <form id="addTeamForm" action="/api/addNewTeam" method="post">
+        <h2>Team Details</h2>
+
+        <label for="teamName">Team Name:</label>
+        <input type="text" id="teamName" name="teamName" required><br>
+
+        <label for="engine">Engine:</label>
+        <input type="text" id="engine" name="engine" required><br>
+
+        <label for="licensedIn">Licensed In:</label>
+        <input type="text" id="licensedIn" name="licensedIn" required><br>
+
+        <label for="seasonEntered">Season Entered:</label>
+        <input type="number" id="seasonEntered" name="seasonEntered" required><br>
+
+        <h2>Drivers</h2>
+
+        <div id="drivers">
+            <!-- Driver 1 -->
+            <div class="driver">
+                <h3>Driver 1</h3>
+                <label for="driver1Name">Name:</label>
+                <input type="text" name="driver1Name" required><br>
+
+                <label for="driver1Surname">Surname:</label>
+                <input type="text" name="driver1Surname" required><br>
+
+                <label for="driver1BirthYear">Year of Birth:</label>
+                <input type="number" name="driver1BirthYear" required><br>
+
+                <label for="driver1Nationality">Nationality:</label>
+                <input type="text" name="driver1Nationality" required><br>
+            </div>
+
+            <!-- Driver 2 -->
+            <div class="driver">
+                <h3>Driver 2</h3>
+                <label for="driver2Name">Name:</label>
+                <input type="text" name="driver2Name" required><br>
+
+                <label for="driver2Surname">Surname:</label>
+                <input type="text" name="driver2Surname" required><br>
+
+                <label for="driver2BirthYear">Year of Birth:</label>
+                <input type="number" name="driver2BirthYear" required><br>
+
+                <label for="driver2Nationality">Nationality:</label>
+                <input type="text" name="driver2Nationality" required><br>
+            </div>
+        </div>
+
+        <br>
+        <input type="submit" value="Submit">
+
+        <button type="button" onclick="returnToDatatable()">Return to Datatable Page</button>
+    </form>
+
+    <script>
+         document.addEventListener("DOMContentLoaded", function () {
+    var addTeamForm = document.getElementById("addTeamForm");
+
+    addTeamForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        var formData = new FormData(addTeamForm);
+        var jsonData = {};
+
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/api/addNewTeam", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+
+        xhr.onload = function () {
+            if (xhr.status === 201) {
+                var responseData = JSON.parse(xhr.responseText);
+                if (responseData.status === 'OK') {
+                    alert("Team and drivers added successfully!");
+                    window.location.href = '/datatable';
+                } else {
+                    console.error('Failed to add a new team:', responseData.message);
+                }
+            } else {
+                console.error('Failed to add a new team. HTTP status:', xhr.status);
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('Request failed');
+        };
+
+        xhr.send(JSON.stringify(jsonData));
+    });
+});
+
+        function returnToDatatable() {
+            window.location.href = '/datatable';
+        }
+    </script>
+</body>
+</html>

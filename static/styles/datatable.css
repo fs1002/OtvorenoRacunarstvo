@@ -48,6 +48,22 @@
     
 }
 
+.newBtns{
+    margin-top: 50px;
+    margin-left: 20px;
+    display: flex;
+}
+
+.newBtns button {
+    margin-right: 10px; 
+    padding: 10px;
+    background-color: #C41E3A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+} 
+
 .allbtns{
     margin-top: 50px;
     margin-left: 500px;

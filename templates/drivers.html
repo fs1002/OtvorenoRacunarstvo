@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Drivers List</title>
+  <link rel="stylesheet" href="/static/styles/datatable.css" />
+  <style>
+    #redirectToData{
+     margin-left: 550px; 
+    margin-top: 50px;
+    padding: 10px;
+    background-color: #C41E3A;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    
+}
+  </style>
+</head>
+<body>
+  <h1>Drivers List</h1>
+  <table id="driversTable">
+    <thead>
+      <tr id="tableHeader">
+        <!-- dynamically added here -->
+      </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+  </table>
+  <button type="button" id="redirectToData" onclick="returnToDatatable()">Return to Datatable Page</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tableHeader = document.querySelector('#tableHeader');
+      const tableBody = document.querySelector('#driversTable tbody');
+
+      fetch('/api/drivers')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch drivers');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.data && data.data.length > 0) {
+            const columns = Object.keys(data.data[0]);
+            columns.forEach((col) => {
+              const th = document.createElement('th');
+              th.textContent = col.charAt(0).toUpperCase() + col.slice(1); 
+              tableHeader.appendChild(th);
+            });
+
+
+            data.data.forEach((driver) => {
+              const row = document.createElement('tr');
+              columns.forEach((col) => {
+                const td = document.createElement('td');
+                td.textContent = driver[col];
+                row.appendChild(td);
+              });
+              tableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="100%">No drivers found</td>`;
+            tableBody.appendChild(row);
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching drivers:', error);
+          const row = document.createElement('tr');
+          row.innerHTML = `<td colspan="100%">Failed to load drivers</td>`;
+          tableBody.appendChild(row);
+        });
+    });
+    function returnToDatatable() {
+            window.location.href = '/datatable';
+        }
+  </script>
+</body>
+</html>

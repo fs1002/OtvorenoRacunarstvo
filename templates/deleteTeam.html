@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/deleteTeam.css" />
+    <title>Data Display</title>
+</head>
+<body>
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th> 
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data -->
+        </tbody>
+    </table>
+
+    <button type="button" onclick="returnToDatatable()">Return to Datatable Page</button>
+
+    <script>
+        fetch('/api/getAllTeams')
+    .then(response => response.json())
+    .then(result => {
+        if (!result.data) {
+            console.error('No data array found in the response');
+            return;
+        }
+
+        const tableBody = document.querySelector('#data-table tbody');
+        tableBody.innerHTML = '';
+
+        result.data.forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${row.team_name}</td>
+                <td>
+                    <button onclick="updateTeam(${row.team_id})">Update</button>
+                    <button onclick="deleteTeam(${row.team_id})">Delete</button>
+                    <button onclick="details(${row.team_id})">Details</button>
+                </td>
+            `;
+            tableBody.appendChild(tr);
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+
+        function deleteTeam(teamId) {
+            console.log('Deleting team with ID:', teamId); 
+                fetch(`/api/deleteTeam/${teamId}`, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Team deleted successfully');
+                        location.reload();
+                    } else {
+                        alert('Failed to delete team');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting team:', error);
+                    alert('Error deleting team');
+                });
+        }
+
+        function updateTeam(teamId) {
+            window.location.href = `/update-team/${teamId}.html`;
+      }
+
+      function details(teamId) {
+            window.location.href = `/details/${teamId}.html`;
+      }
+        function returnToDatatable() {
+            window.location.href = '/datatable';
+        }
+    </script>
+</body>
+</html>

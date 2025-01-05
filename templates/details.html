@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Team Details</title>
+  <link rel="stylesheet" href="/static/styles/deleteTeam.css" />
+</head>
+<body>
+  <h1>Team Details</h1>
+  <table id="detailsTable">
+    <tbody>
+      <!-- Data -->
+    </tbody>
+  </table>
+
+  <button type="button" onclick="returnToDeletePage()">Return to Delete Page</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const pathSegments = window.location.pathname.split('/');
+      const teamId = pathSegments[pathSegments.length - 1].replace('.html', '');
+
+      fetch(`/api/details/${teamId}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch team details');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const tableBody = document.querySelector('#detailsTable tbody');
+
+          if (data.data) {
+            const teamData = data.data;
+            Object.keys(teamData).forEach((key) => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+                <td><strong>${key}</strong></td>
+                <td>${teamData[key]}</td>
+              `;
+              tableBody.appendChild(row);
+            });
+          } else {
+            const row = document.createElement('tr');
+            row.innerHTML = `<td colspan="2">No details found</td>`;
+            tableBody.appendChild(row);
+          }
+        })
+        .catch((error) => {
+          console.error('Error fetching team details:', error);
+          const tableBody = document.querySelector('#detailsTable tbody');
+          const row = document.createElement('tr');
+          row.innerHTML = `<td colspan="2">Failed to load team details</td>`;
+          tableBody.appendChild(row);
+        });
+    });
+
+    function returnToDeletePage() {
+      window.location.href = '/delete-team';
+    }
+  </script>
+</body>
+</html>
