@@ -22,11 +22,46 @@
 
     <div class="button-container">
         <button id="redirectToDatatable">Go to Datatable Page</button>
-        <button id="openApi">Get OpenAPI JSON</button>
+        <button id="openApi">OpenAPI JSON</button>
     </div>
+
+    <div class="new-btns">
+    <button id="profil">Korisnički profil</button>
+    <button id="osvjezi">Osvježi preslike</button>
+    </div>
+
+    <div id="statusMessage" style="margin-top: 10px;"></div>
+
+    <div id="profileData" style="display: none; margin-top: 20px; border: 1px solid #ccc; padding: 10px; position: relative;">
+        <button id="closeProfile" style="position: absolute; top: 5px; right: 5px; background: #C41E3A; color: white; border: none; border-radius: 3px; cursor: pointer;">X</button>
+        <h3>Podaci korisnika:</h3>
+        <pre id="profileDetails"></pre>
+    </div>
+
+    <button class="login-button" id="loginButton">Prijava</button>
+    <button class="login-button" id="logoutButton">Odjava</button>
 
     <script>
         $(document).ready(function() {
+
+            function checkAuth() {
+        $.get('/check-auth', function(data) {
+            if (data.isAuthenticated) {
+                $('#loginButton').hide();
+                $('#logoutButton').show();
+                $('#profil').show();
+                $('#osvjezi').show();
+            } else {
+                $('#loginButton').show();
+                $('#logoutButton').hide();
+                $('#profil').hide();
+                $('#osvjezi').hide();
+            }
+        });
+    }
+
+    checkAuth();
+
             $('#redirectToDatatable').on('click', function() {
                 window.location.href = '/datatable';
             });
@@ -34,6 +69,36 @@
            $('#openApi').on('click', function() {
                 window.location.href = '/download/openapi';
             });
+
+            $('#loginButton').on('click', function() {
+                window.location.href = '/login';
+            });
+
+            $('#logoutButton').on('click', function() {
+                window.location.href = '/logout';
+            });
+
+            $('#profil').on('click', function() {
+            // Dohvaća podatke profila od servera
+            $.get('/profile', function(data) {
+                $('#profileDetails').text(JSON.stringify(data, null, 2)); // Prikazuje podatke korisnika
+                $('#profileData').show(); // Prikazuje div s podacima
+            }).fail(function() {
+                alert('Greška: Korisnik nije prijavljen.');
+            });
+        });
+
+        $('#closeProfile').on('click', function() {
+        $('#profileData').hide(); // Sakriva prozor
+    });
+
+    $('#osvjezi').on('click', function () {
+    $('#statusMessage').text('Datoteke ažurirane');
+    $.get('/api/refresh-files', function (response) {
+    }).fail(function (error) {
+      $('#statusMessage').html(`<p style="color: red;">Došlo je do greške: ${error.responseJSON.message}</p>`);
+    });
+  });
 
         });
 

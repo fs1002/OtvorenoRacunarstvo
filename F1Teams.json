@@ -1,5 +1,7 @@
 [
   {
+    "@context": "https://schema.org/",
+    "@type": "SportsTeam",
     "Team_name": "Sauber",
     "Engine": "Ferrari",
     "Licensed_in": "Switzerland",
@@ -14,10 +16,14 @@
     "WCC": 0,
     "drivers": [
       {
-        "name": "Valtteri",
-        "surname": "Bottas",
+        "@type": "Person",
+        "givenName": "Valterri",
+        "familyName": "Bottas",
+        "nationality": {
+          "@type": "Country",
+          "name": "Finland"
+        },
         "year_of_birth": 1989,
-        "nationality": "Finland",
         "seasons_competed": 12,
         "races_entered": 243,
         "wins": 10,
@@ -27,11 +33,15 @@
         "podiums": 67,
         "wdc": 0
       },
-      {
-        "name": "Zhou",
-        "surname": "Guanyu",
+        {
+          "@type": "Person",
+          "givenName": "Zhou",
+          "familyName": "Guanyu",
+          "nationality": {
+            "@type": "Country",
+            "name": "China"
+          },
         "year_of_birth": 1999,
-        "nationality": "China",
         "seasons_competed": 3,
         "races_entered": 64,
         "wins": 0,
@@ -44,6 +54,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Mercedes",
     "Engine": "Mercedes",
     "Licensed_in": "Germany",
@@ -58,10 +69,14 @@
     "WCC": 8,
     "drivers": [
       {
-        "name": "Lewis",
-        "surname": "Hamilton",
+        "@type": "Person",
+        "givenName": "Lewis",
+        "familyName": "Hamilton",
+        "nationality": {
+          "@type": "Country",
+          "name": "UK"
+        },
         "year_of_birth": 1985,
-        "nationality": "UK",
         "seasons_competed": 18,
         "races_entered": 352,
         "wins": 105,
@@ -72,10 +87,14 @@
         "wdc": 7
       },
       {
-        "name": "George",
-        "surname": "Russell",
+        "@type": "Person",
+        "givenName": "George",
+        "familyName": "Russell",
+        "nationality": {
+          "@type": "Country",
+          "name": "UK"
+        },
         "year_of_birth": 1998,
-        "nationality": "UK",
         "seasons_competed": 6,
         "races_entered": 124,
         "wins": 2,
@@ -88,6 +107,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Alpine",
     "Engine": "Renault",
     "Licensed_in": "France",
@@ -102,10 +122,14 @@
     "WCC": 0,
     "drivers": [
       {
-        "name": "Esteban",
-        "surname": "Ocon",
+        "@type": "Person",
+        "givenName": "Esteban",
+        "familyName": "Ocon",
+        "nationality": {
+          "@type": "Country",
+          "name": "France"
+        },
         "year_of_birth": 1996,
-        "nationality": "France",
         "seasons_competed": 8,
         "races_entered": 153,
         "wins": 1,
@@ -116,10 +140,14 @@
         "wdc": 0
       },
       {
-        "name": "Pierre",
-        "surname": "Gasly",
+        "@type": "Person",
+        "givenName": "Pierre",
+        "familyName": "Gasly",
+        "nationality": {
+          "@type": "Country",
+          "name": "France"
+        },
         "year_of_birth": 1996,
-        "nationality": "France",
         "seasons_competed": 8,
         "races_entered": 150,
         "wins": 1,
@@ -132,6 +160,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "McLaren",
     "Engine": "Mercedes",
     "Licensed_in": "UK",
@@ -146,10 +175,14 @@
     "WCC": 8,
     "drivers": [
       {
-        "name": "Lando",
-        "surname": "Norris",
+        "@type": "Person",
+        "givenName": "Lando",
+        "familyName": "Norris",
+        "nationality": {
+          "@type": "Country",
+          "name": "UK"
+        },
         "year_of_birth": 1999,
-        "nationality": "UK",
         "seasons_competed": 6,
         "races_entered": 124,
         "wins": 3,
@@ -160,10 +193,14 @@
         "wdc": 0
       },
       {
-        "name": "Oscar",
-        "surname": "Piastri",
+        "@type": "Person",
+        "givenName": "Oscar",
+        "familyName": "Piastri",
+        "nationality": {
+          "@type": "Country",
+          "name": "Australia"
+        },
         "year_of_birth": 2001,
-        "nationality": "Australia",
         "seasons_competed": 2,
         "races_entered": 42,
         "wins": 2,
@@ -176,6 +213,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Williams",
     "Engine": "Mercedes",
     "Licensed_in": "UK",
@@ -190,10 +228,14 @@
     "WCC": 9,
     "drivers": [
       {
-        "name": "Alexander",
-        "surname": "Albon",
+        "@type": "Person",
+        "givenName": "Alexander",
+        "familyName": "Albon",
+        "nationality": {
+          "@type": "Country",
+          "name": "Thailand"
+        },
         "year_of_birth": 1996,
-        "nationality": "Thailand",
         "seasons_competed": 5,
         "races_entered": 102,
         "wins": 0,
@@ -204,10 +246,14 @@
         "wdc": 0
       },
       {
-        "name": "Franco",
-        "surname": "Colapinto",
+        "@type": "Person",
+        "givenName": "Franco",
+        "familyName": "Colapinto",
+        "nationality": {
+          "@type": "Country",
+          "name": "Argentina"
+        },
         "year_of_birth": 2003,
-        "nationality": "Argentina",
         "seasons_competed": 1,
         "races_entered": 5,
         "wins": 0,
@@ -220,6 +266,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Aston Martin",
     "Engine": "Mercedes",
     "Licensed_in": "UK",
@@ -234,10 +281,14 @@
     "WCC": 0,
     "drivers": [
       {
-        "name": "Fernando",
-        "surname": "Alonso",
+        "@type": "Person",
+        "givenName": "Fernando",
+        "familyName": "Alonso",
+        "nationality": {
+          "@type": "Country",
+          "name": "Spain"
+        },
         "year_of_birth": 1981,
-        "nationality": "Spain",
         "seasons_competed": 21,
         "races_entered": 400,
         "wins": 32,
@@ -248,10 +299,14 @@
         "wdc": 2
       },
       {
-        "name": "Lance",
-        "surname": "Stroll",
+        "@type": "Person",
+        "givenName": "Lance",
+        "familyName": "Stroll",
+        "nationality": {
+          "@type": "Country",
+          "name": "Canada"
+        },
         "year_of_birth": 1998,
-        "nationality": "Canada",
         "seasons_competed": 8,
         "races_entered": 165,
         "wins": 0,
@@ -264,6 +319,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Ferrari",
     "Engine": "Ferrari",
     "Licensed_in": "Italy",
@@ -278,10 +334,14 @@
     "WCC": 16,
     "drivers": [
       {
-        "name": "Charles",
-        "surname": "Leclerc",
+        "@type": "Person",
+        "givenName": "Charles",
+        "familyName": "Leclerc",
+        "nationality": {
+          "@type": "Country",
+          "name": "Monaco"
+        },
         "year_of_birth": 1997,
-        "nationality": "Monaco",
         "seasons_competed": 7,
         "races_entered": 145,
         "wins": 8,
@@ -292,10 +352,14 @@
         "wdc": 0
       },
       {
-        "name": "Carlos",
-        "surname": "Sainz",
+        "@type": "Person",
+        "givenName": "Carlos",
+        "familyName": "Sainz",
+        "nationality": {
+          "@type": "Country",
+          "name": "Spain"
+        },
         "year_of_birth": 1994,
-        "nationality": "Spain",
         "seasons_competed": 10,
         "races_entered": 205,
         "wins": 3,
@@ -308,6 +372,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Haas",
     "Engine": "Ferrari",
     "Licensed_in": "US",
@@ -322,10 +387,14 @@
     "WCC": 0,
     "drivers": [
       {
-        "name": "Kevin",
-        "surname": "Magnussen",
+        "@type": "Person",
+        "givenName": "Kevin",
+        "familyName": "Magnussen",
+        "nationality": {
+          "@type": "Country",
+          "name": "Denmark"
+        },
         "year_of_birth": 1992,
-        "nationality": "Denmark",
         "seasons_competed": 10,
         "races_entered": 183,
         "wins": 0,
@@ -336,10 +405,14 @@
         "wdc": 0
       },
       {
-        "name": "Nico",
-        "surname": "Hülkenberg",
+        "@type": "Person",
+        "givenName": "Nico",
+        "familyName": "Hulkenberg",
+        "nationality": {
+          "@type": "Country",
+          "name": "Germany"
+        },
         "year_of_birth": 1987,
-        "nationality": "Germany",
         "seasons_competed": 13,
         "races_entered": 226,
         "wins": 0,
@@ -352,6 +425,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "Red Bull Racing",
     "Engine": "Honda RBPT",
     "Licensed_in": "Austria",
@@ -366,10 +440,14 @@
     "WCC": 6,
     "drivers": [
       {
-        "name": "Max",
-        "surname": "Verstappen",
+        "@type": "Person",
+        "givenName": "Max",
+        "familyName": "Verstappen",
+        "nationality": {
+          "@type": "Country",
+          "name": "Netherlands"
+        },
         "year_of_birth": 1997,
-        "nationality": "Netherlands",
         "seasons_competed": 10,
         "races_entered": 205,
         "wins": 61,
@@ -380,10 +458,14 @@
         "wdc": 3
       },
       {
-        "name": "Sergio",
-        "surname": "Perez",
+        "@type": "Person",
+        "givenName": "Checo",
+        "familyName": "Perez",
+        "nationality": {
+          "@type": "Country",
+          "name": "Mexico"
+        },
         "year_of_birth": 1990,
-        "nationality": "Mexico",
         "seasons_competed": 14,
         "races_entered": 281,
         "wins": 6,
@@ -396,6 +478,7 @@
     ]
   },
   {
+    "type": "SportsTeam",
     "Team_name": "RB",
     "Engine": "Honda RBPT",
     "Licensed_in": "Italy",
@@ -410,10 +493,14 @@
     "WCC": 0,
     "drivers": [
       {
-        "name": "Yuki",
-        "surname": "Tsunoda",
+        "@type": "Person",
+        "givenName": "Yuki",
+        "familyName": "Tsunoda",
+        "nationality": {
+          "@type": "Country",
+          "name": "Japan"
+        },
         "year_of_birth": 2000,
-        "nationality": "Japan",
         "seasons_competed": 4,
         "races_entered": 86,
         "wins": 0,
@@ -424,10 +511,14 @@
         "wdc": 0
       },
       {
-        "name": "Liam",
-        "surname": "Lawson",
+        "@type": "Person",
+        "givenName": "Liam",
+        "familyName": "Lawson",
+        "nationality": {
+          "@type": "Country",
+          "name": "New Zealand"
+        },
         "year_of_birth": 2002,
-        "nationality": "New Zealand",
         "seasons_competed": 1,
         "races_entered": 1,
         "wins": 0,

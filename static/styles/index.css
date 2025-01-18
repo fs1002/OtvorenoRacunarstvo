@@ -43,3 +43,25 @@ button {
     border: none;
     cursor: pointer;
 }
+
+.login-button {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    padding: 10px 20px;
+    font-size: 16px;
+    display: none;
+}
+
+.new-btns{
+    display: none;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    width: auto;    
+    height: auto;  
+    gap: 10px; 
+    font-size: 50px;
+    padding: 15px 30px; 
+    margin-left: 35px;
+}

@@ -3,6 +3,8 @@ const app = express();
 const path = require('path');
 const { Pool } = require('pg');
 const { Parser } = require('json2csv');
+const { auth } = require('express-openid-connect');
+const fs = require('fs');
 
 
 const pool = new Pool({
@@ -16,10 +18,47 @@ const pool = new Pool({
 app.use(express.json());
 app.use('/static', express.static(path.join(__dirname, 'static')));
 
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: '5guYTRZR3WMeMEq-D_cHUcvFTLmuY_CtU8u0gbZjcuR5sXkxDpl6z83v-IGIRstb',
+  baseURL: 'http://localhost:3000',
+  clientID: '26yNuSodWgff33RKkfTV4ukG3BQ6Wfud',
+  issuerBaseURL: 'https://dev-8n7g07w0mzbj2yye.us.auth0.com'
+};
+
+app.use(auth(config));
+
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates/index.html'));
 });
 
+function requireLogin(req, res, next) {
+  if (!req.oidc.isAuthenticated()) {
+    return res.status(401).send('Access Denied. Please log in first.');
+  }
+  next();
+}
+
+app.get('/profile', requireLogin, (req, res) => {
+  res.json(req.oidc.user);
+});
+
+
+
+app.get('/logout', (req, res) => {
+  res.oidc.logout({ returnTo: '/' });
+});
+
+
+app.get('/check-auth', (req, res) => {
+  if (req.oidc.isAuthenticated()) {
+      res.json({ isAuthenticated: true, user: req.oidc.user });
+  } else {
+      res.json({ isAuthenticated: false });
+  }
+});
 
 app.get('/datatable', (req, res) => {
     res.sendFile(path.join(__dirname, 'templates/datatable.html')); 
@@ -482,6 +521,57 @@ app.delete('/api/deleteTeam/:teamId', async (req, res) => {
       }
     });
   });
+
+   app.get('/api/refresh-files', requireLogin, async (req, res) => {
+    try {
+      const query = `
+        SELECT 
+          Team_name, Engine, Licensed_in, Season_entered, Races_entered,
+          Wins, Points, Poles, Fastest_laps, Podiums, WDC, WCC,
+          Name, Surname, Nationality, Year_of_birth, Seasons_competed,
+          Driver_Races_entered, Driver_Wins, Driver_Points,
+          Driver_Poles, Driver_Fastest_laps,
+          Driver_Podiums, Driver_WDC
+        FROM teams t
+        JOIN drivers d ON d.Team_id = t.Team_id;
+      `;
+      const result = await pool.query(query);
+  
+      if (result.rows.length === 0) {
+        return res.status(404).json({
+          status: 'Not Found',
+          message: 'No data to export.',
+        });
+      }
+  
+
+      const jsonPath = path.join(__dirname, 'static/data/F1Teams.json');
+      fs.writeFileSync(jsonPath, JSON.stringify(result.rows, null, 2));
+  
+      const csvPath = path.join(__dirname, 'static/data/F1Teams.csv');
+      const json2csvParser = new Parser();
+      const csv = json2csvParser.parse(result.rows);
+      fs.writeFileSync(csvPath, csv);
+  
+      res.json({
+        message: 'Datoteke su uspješno ažurirane.',
+        files: {
+          json: '/static/data/F1Teams.json',
+          csv: '/static/data/F1Teams.csv',
+        },
+      });
+    } catch (err) {
+      console.error('Greška prilikom ažuriranja datoteka:', err);
+      res.status(500).json({
+        status: 'Internal Server Error',
+        message: `Došlo je do greške: ${err.message}`,
+      });
+    }
+  }); 
+
+
+
+
 
 
 app.listen(3000, () => {
